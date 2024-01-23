@@ -1,0 +1,66 @@
+{
+  "name": "click-outside-ts",
+  "version": "0.0.1",
+  "description": "The useClickOutside hook is a custom React hook designed to simplify the implementation of click outside event detection in React components. It provides a straightforward way to detect when a user clicks outside a specified element and trigger a callback function in response. Bonus useClickOutside works for 'Esc' press button.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "click outside react",
+    "click outside react ts",
+    "click outside react typescript",
+    "hook",
+    "useClickOutside",
+    "click outside",
+    "outside",
+    "click",
+    "click outside react",
+    "event detection",
+    "callback function",
+    "document-level event listener",
+    "target element",
+    "refObject",
+    "event handling",
+    "user interaction",
+    "modal click outside",
+    "UI component",
+    "click event",
+    "component development",
+    "react development",
+    "custom hook",
+    "user interface"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtemPchela/click-outside-ts.git"
+  },
+  "homepage": "https://github.com/ArtemPchela/click-outside-ts#readme",
+  "author": "Artsiom Pchaliankou",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.19.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.1",
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.2.14",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

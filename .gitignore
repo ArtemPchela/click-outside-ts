@@ -1,0 +1,26 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+### react template
+build
+/build
+dist
+/lib
+/dist
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
