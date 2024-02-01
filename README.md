@@ -19,22 +19,26 @@ import useClickOutside from "click-outside-ts";
 const Modal = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleModal = () => {
-        setIsOpen(!isOpen);
+    const modalOpen = () => {
+        setIsOpen(true);
     };
 
-    const modalRef = useClickOutside(toggleModal);
+    const modalClose = () => {
+        setIsOpen(false);
+    };
+
+    const modalRef = useClickOutside(modalClose);
 
     return (
         <div>
-            <div className="modal-button" onClick={toggleModal}>
+            <div className="modal-button" onClick={modalOpen}>
                 Open modal
             </div>
             {isOpen && (
                 <div className="modal-container">
                     <div className="modal" ref={modalRef}>
                         <h2>Modal message</h2>
-                        <div className="modal-button" onClick={toggleModal}>
+                        <div className="modal-button" onClick={modalClose}>
                             Close modal
                         </div>
                     </div>
@@ -47,11 +51,7 @@ const Modal = () => {
 export default Modal;
 ```
 
-## Usages for example and quick start. Other on your taste.
-
-```tsx
-
-## Usage click outside and key press Esc
+## Usage click outside and key press Esc to close modal
 
 ```tsx
 import { useState } from "react";
@@ -60,8 +60,12 @@ import useClickOutside from "click-outside-ts";
 const Modal = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleModal = () => {
-        setIsOpen(!isOpen);
+    const modalOpen = () => {
+        setIsOpen(true);
+    };
+
+    const modalClose = () => {
+        setIsOpen(false);
     };
 
     //add second argument to useClickOutside hook to use "Esc" key to close modal
@@ -70,14 +74,14 @@ const Modal = () => {
 
     return (
         <div>
-            <div className="modal-button" onClick={toggleModal}>
+            <div className="modal-button" onClick={modalOpen}>
                 Open modal
             </div>
             {isOpen && (
                 <div className="modal-container">
                     <div className="modal" ref={modalRef}>
                         <h2>Modal message</h2>
-                        <div className="modal-button" onClick={toggleModal}>
+                        <div className="modal-button" onClick={modalClose}>
                             Close modal
                         </div>
                     </div>
