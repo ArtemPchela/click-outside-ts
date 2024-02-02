@@ -1,54 +1,13 @@
 # click-outside-ts
 
 > React hook to handle click outside an element with capabilities use "Esc" key to close modal.
-
+> 
 > Works on mobile screens for touch events.
 
 ## Install
 
 ```bash
 npm install click-outside-ts
-```
-
-## Usage for click outside to close modal
-
-```tsx
-import { useState } from "react";
-import useClickOutside from "click-outside-ts";
-
-const Modal = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const modalOpen = () => {
-        setIsOpen(true);
-    };
-
-    const modalClose = () => {
-        setIsOpen(false);
-    };
-
-    const modalRef = useClickOutside(modalClose);
-
-    return (
-        <div>
-            <div className="modal-button" onClick={modalOpen}>
-                Open modal
-            </div>
-            {isOpen && (
-                <div className="modal-container">
-                    <div className="modal" ref={modalRef}>
-                        <h2>Modal message</h2>
-                        <div className="modal-button" onClick={modalClose}>
-                            Close modal
-                        </div>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default Modal;
 ```
 
 ## Usage click outside and key press Esc to close modal
@@ -58,8 +17,9 @@ import { useState } from "react";
 import useClickOutside from "click-outside-ts";
 
 const Modal = () => {
+    const modalRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
-
+    
     const modalOpen = () => {
         setIsOpen(true);
     };
@@ -67,10 +27,8 @@ const Modal = () => {
     const modalClose = () => {
         setIsOpen(false);
     };
-
-    //add second argument to useClickOutside hook to use "Esc" key to close modal
-    //from useState. In this case we use isOpen
-    const modalRef = useClickOutside(toggleModal, isOpen);
+    
+    useClickOutside(modalRef, modalClose);
 
     return (
         <div>
@@ -130,19 +88,16 @@ export default Modal;
 }
 ```
 
-## License
+## License and Author
 MIT © [Artsiom Pchaliankou](https://github.com/ArtemPchela)
-***
-
-## Author
-👤 **Artsiom Pchaliankou**
 ***
 
 ## Show your support
 Give a ⭐️ if this project helped you!
 
-<a href="https://www.buymeacoffee.com/timdev" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
+<div style="height: 60px!important; width: 150px!important;">
+<a href="https://www.buymeacoffee.com/timdev" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"></a>
+</div>
 
 
 

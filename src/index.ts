@@ -1,39 +1,32 @@
-import { useEffect, useRef, RefObject } from "react";
-
-type Event = MouseEvent | TouchEvent | KeyboardEvent;
-
-function useClickOutside<T extends HTMLElement = HTMLDivElement, U = boolean>(
-    handler: (event: Event) => void,
-    extraParam?: U,
-): RefObject<T> {
-    const ref = useRef<T>(null);
-
+import { useEffect, RefObject } from "react";
+type AllowedEvents = MouseEvent | TouchEvent | KeyboardEvent;
+function useClickOutside<T extends HTMLElement = HTMLElement>(
+    ref: RefObject<T>,
+    callback: (event: AllowedEvents) => void,
+): void {
     useEffect(() => {
-        const mouseListener = (event: MouseEvent | TouchEvent) => {
+        const listener = (event: AllowedEvents) => {
             if (!ref.current || ref.current.contains(event.target as Node)) {
                 return;
             }
-            handler(event);
+            callback(event);
         };
-
-        const keyListener = (event: KeyboardEvent) => {
-            if (extraParam && event.key === "Escape") {
-                handler(event);
+        const eventTypes: (keyof DocumentEventMap)[] = ["mousedown", "touchstart"];
+        eventTypes.forEach((eventType) => {
+            document.addEventListener(eventType, listener as EventListener);
+        });
+        const handleKeydown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                callback(event);
             }
         };
-
-        document.addEventListener("mousedown", mouseListener);
-        document.addEventListener("touchstart", mouseListener);
-        document.addEventListener("keydown", keyListener);
-
+        document.addEventListener("keydown", handleKeydown as EventListener);
         return () => {
-            document.removeEventListener("mousedown", mouseListener);
-            document.removeEventListener("touchstart", mouseListener);
-            document.removeEventListener("keydown", keyListener);
+            eventTypes.forEach((eventType) => {
+                document.removeEventListener(eventType, listener as EventListener);
+            });
+            document.removeEventListener("keydown", handleKeydown as EventListener);
         };
-    }, [ref, handler, extraParam]);
-
-    return ref;
+    }, [ref, callback]);
 }
-
 export default useClickOutside;
